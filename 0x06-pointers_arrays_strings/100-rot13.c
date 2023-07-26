@@ -1,46 +1,48 @@
 #include "main.h"
+
 /**
- * print_number - print an int numbers.
- * @n: number tested
- * Return: Always 0.
+ * rot13 - Encodes a string using rot13.
+ * @str: The string to be encoded.
+ *
+ * Return: A pointer to the encoded string.
  */
-void print_number(int n)
+
+char *rot13(char *str)
 {
-	int i, j, digit, digits, power;
-	unsigned int t, nchar, number;
+	int indx1 = 0, indx2;
 
-	digit = 0;
-	if (n < 0)
+	char alphabet[52] = {'A', 'B', 'C', 'D', 'E', 'F',
+			     'G', 'H', 'I', 'J', 'K', 'L',
+			     'M', 'N', 'O', 'P', 'Q', 'R',
+			     'S', 'T', 'U', 'V', 'W', 'X',
+			     'Y', 'Z', 'a', 'b', 'c', 'd',
+			     'e', 'f', 'g', 'h', 'i', 'j',
+			     'k', 'l', 'm', 'n', 'o', 'p',
+			     'q', 'r', 's', 't', 'u', 'v',
+			     'w', 'x', 'y', 'z'};
+	char rot13key[52] = {'N', 'O', 'P', 'Q', 'R', 'S',
+			     'T', 'U', 'V', 'W', 'X', 'Y',
+			     'Z', 'A', 'B', 'C', 'D', 'E',
+			     'F', 'G', 'H', 'I', 'J', 'K',
+			     'L', 'M', 'n', 'o', 'p', 'q',
+			     'r', 's', 't', 'u', 'v', 'w',
+			     'x', 'y', 'z', 'a', 'b', 'c',
+			     'd', 'e', 'f', 'g', 'h', 'i',
+			     'j', 'k', 'l', 'm'};
+
+	while (str[indx1])
 	{
-		_putchar('-');
-		t = -n;
-	}
-	else
-	{
-		t = n;
+		for (indx2 = 0; indx2 < 52; indx2++)
+		{
+			if (str[indx1] == alphabet[indx2])
+			{
+				str[indx1] = rot13key[indx2];
+				break;
+			}
+		}
+
+		indx1++;
 	}
 
-	number = t;
-
-	while (number >= 10)
-	{
-		number = number / 10;
-		digit++;
-	}
-	digits = digit + 1;
-	power = 1;
-	i = 1;
-
-	while (i < digits)
-	{
-		power = power * 10;
-		i++;
-	}
-	j = power;
-	while (j >= 1)
-	{
-		nchar = (t / j) % 10;
-		_putchar(nchar + '0');
-		j = j / 10;
-	}
+	return (str);
 }
