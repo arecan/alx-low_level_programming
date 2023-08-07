@@ -59,6 +59,6 @@ char **strtow(char *str)
 			j++;
 		}
 	}
-	p[j] = NULL;
-	return (p);
+p[j] = NULL;
+return (p);
 }
